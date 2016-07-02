@@ -1,0 +1,110 @@
+
+export PROJECTSDIR="${HOME}/mtwProjects"
+export SCRIPTSDIR="${PROJECTSDIR}/mtwScripts"
+
+# Directory aliases
+export AP3="~/mtwProjects/Joomla/adminpraise/trunk/"
+
+export UNAME=`uname`
+export HOST=`hostname -s`
+
+# Path
+PATH="${PATH}:/sbin"
+PATH="${PATH}:/usr/X11R6/bin"
+PATH="${PATH}:/opt/e17/bin"
+PATH="${PATH}:/opt/gnome/bin"
+PATH="${PATH}:/opt/kde/bin"
+PATH="${PATH}:/opt/apache-tomcat/bin"
+PATH="${PATH}:${SCRIPTSDIR}"
+PATH="${PATH}:${SCRIPTSDIR}/backup"
+PATH="${PATH}:${SCRIPTSDIR}/bash"
+PATH="${PATH}:${SCRIPTSDIR}/projects"
+PATH="${PATH}:${SCRIPTSDIR}/net"
+PATH="${PATH}:${SCRIPTSDIR}/joomla"
+
+# Gnome path
+PKG_CONFIG_PATH="/usr/lib/pkgconfig/:/opt/gnome/lib/pkgconfig/:/opt/e17/lib/pkgconfig/"
+
+# Exclude svn file from grep
+GREP_OPTIONS="--exclude=\*.svn\*"
+
+bash_prompt() {
+
+    local NONE="\[\033[0m\]"    # unsets color to term's fg color
+    
+    # regular colors
+    local K="\[\033[0;30m\]"    # black
+    local R="\[\033[0;31m\]"    # red
+    local G="\[\033[0;32m\]"    # green
+    local Y="\[\033[0;33m\]"    # yellow
+    local B="\[\033[0;34m\]"    # blue
+    local M="\[\033[0;35m\]"    # magenta
+    local C="\[\033[0;36m\]"    # cyan
+    local W="\[\033[0;37m\]"    # white
+    
+    # empahsized (bolded) colors
+    local EMK="\[\033[1;30m\]"
+    local EMR="\[\033[1;31m\]"
+    local EMG="\[\033[1;32m\]"
+    local EMY="\[\033[1;33m\]"
+    local EMB="\[\033[1;34m\]"
+    local EMM="\[\033[1;35m\]"
+    local EMC="\[\033[1;36m\]"
+    local EMW="\[\033[1;37m\]"
+    
+    # background colors
+    local BGK="\[\033[40m\]"
+    local BGR="\[\033[41m\]"
+    local BGG="\[\033[42m\]"
+    local BGY="\[\033[43m\]"
+    local BGB="\[\033[44m\]"
+    local BGM="\[\033[45m\]"
+    local BGC="\[\033[46m\]"
+    local BGW="\[\033[47m\]"
+    
+    local UC=$W                 # user's color
+    [ $UID -eq "0" ] && UC=$R   # root's color
+    
+    #PS1="${EMR}(${UC}\u${EMK}@${UC}\h:${C}\${PWD}${EMG})${UC}\\$ ${NONE}"
+    PS1="${EMG}[${R}\u${EMK}@${R}\h${EMK}:${B}\${PWD}${EMG}]\n${G}\\$ "
+	# without colors: PS1="[\u@\h \${NEW_PWD}]\\$ "
+    # extra backslash in front of \$ to make bash colorize the prompt
+}
+
+bash_prompt
+
+if [ $UNAME == "Darwin" ]; then
+	alias ls="ls -G"
+else
+	alias dir="ls -all"
+	alias ls="ls --color"
+	alias ps="ps fwax | grep -v agetty | grep -v httpd |grep -v nfsiod"
+fi
+
+alias diff="diff -Nru"
+alias cd..="cd .."
+alias ..="cd .."
+alias w="w -s"
+alias cls="clear"
+alias ip="echo /sbin/ifconfig eth1 | grep inet | cut -d':' -f2 | cut -d' ' -f1"
+alias logsendmail="tail -n 50 /var/log/messages | grep sendmail"
+alias logpop3="tail -n 50 /var/log/messages | grep pop3d"
+alias df="df -h"
+alias su="su -l"
+alias banlist="bfd -a | grep sshd | cut -d' ' -f1"
+alias checkCode="phpcs -n --standard=Joomla ."
+
+if [ -n "$GNOME_KEYRING_PID" ]; then
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
+    export GNOME_KEYRING_CONTROL
+    export GPG_AGENT_INFO
+fi
+
+export LANGUAGE="en_US:en"
+export LC_MESSAGES="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+export LC_COLLATE="en_US.UTF-8"
+
+PERL_MB_OPT="--install_base \"/home/fastslack/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/fastslack/perl5"; export PERL_MM_OPT;

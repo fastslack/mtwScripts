@@ -1,0 +1,38 @@
+#!/bin/bash
+
+PACKDATE=`date +%Y%m%d%H%M%S`
+#IP=190.16.56.78
+IP=153.69.3.1
+SUBNET=3
+
+#while [ ${SUBNET} -le 255 ]; do
+
+  #touch ./153.69.${SUBNET}.${COUNT}-${PACKDATE}.scan
+
+  COUNT=1
+  while [  ${COUNT} -le 255 ]; do
+    #let CC=COUNT-1
+    #echo $CC
+    #echo 's/153.69.3.${CC}/153.69.3.${COUNT}/g'
+    #SED="'s/153.69.3.${CC}/153.69.3.${COUNT}/g'"
+    #echo $SED
+
+    #ORIGIP=`grep IPADDR\\[0 /etc/rc.d/rc.inet1.conf | cut -d"\"" -f2`
+    #ORIGIP=`/sbin/ifconfig eth0 | grep inet | cut -d':' -f2 | cut -d' ' -f1`
+    #sed -i "s/address ${ORIGIP}/address 153.69.${SUBNET}.${COUNT}/g" /etc/network/interfaces
+    #/etc/init.d/networking restart  
+
+    IP="153.69.3.${COUNT}"
+
+    if ping -c 1 -w 5 "${IP}" &>/dev/null ; then 
+      echo "153.69.${SUBNET}.${COUNT}: EEEEEEEEHHHHH!!!!!!!"
+    #  echo "153.69.${SUBNET}.${COUNT}\n" >> ./153.69.${SUBNET}-${PACKDATE}.scan 
+    else
+      echo "153.69.${SUBNET}.${COUNT}: DOWN shit!"
+    fi
+    let COUNT=COUNT+1
+    #echo "========> $COUNT"
+  done
+
+#  let SUBNET=SUBNET+1
+#done

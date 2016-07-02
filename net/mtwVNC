@@ -1,0 +1,4 @@
+#!/bin/sh
+
+rm -rf /tmp/.X11-unix/X1
+vncserver :1 -name dragon -depth 16 -geometry 1280x720
