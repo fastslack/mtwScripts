@@ -1,0 +1,15 @@
+#!/bin/sh
+
+. ${HOME}/mtwScripts/mtwInclude.sh
+
+cd ${BACKUPDIR}
+
+tar cf svn-${PACKDATE}.tar ${SVNDIR}
+bzip2 --best svn-${PACKDATE}.tar
+mv svn-${PACKDATE}.tar.bz2 svn/.
+
+tar cf www-${PACKDATE}.tar ${WEBDIR}
+bzip2 --best www-${PACKDATE}.tar
+mv www-${PACKDATE}.tar.bz2 www/.
+
+

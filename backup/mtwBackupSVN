@@ -1,0 +1,31 @@
+#!/bin/sh
+
+. ${HOME}/mtwScripts/mtwInclude.sh
+
+VER=0.0.1
+
+usage () {
+cat << EOF
+
+${0} v${VER}
+Usage: ${0} [directory] [--force]
+License: GPL
+
+EOF
+}
+
+if [ ${#} -lt "1" ]; then
+    usage
+    exit 0
+fi    
+
+if [ -d ${1} ]; then
+	tar cfh ${1}-${PACKDATE}.tar ${1}
+	gzip ${1}-${PACKDATE}.tar
+	mv ${1}-${PACKDATE}.tar.gz ${BACKUPDIR}/svn/svn.gz/.
+
+	if [ "${2}" = "--del-dir" ]; then
+		rm -rf ${1}/
+  	fi
+fi
+

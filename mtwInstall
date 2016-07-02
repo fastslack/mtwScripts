@@ -1,0 +1,30 @@
+#!/bin/sh
+
+SVNHOST=matware.com.ar
+SVNPORT=81
+SVNPATH=/svn/mtwScripts/trunk
+SVNNAME=mtwScripts
+
+cd ${HOME}
+#svn co http://${SVNHOST}:${SVNPORT}${SVNPATH} ${SVNNAME}
+
+
+#Profile
+mv ${HOME}/.profile ${HOME}/.profile.old
+ln -s ${HOME}/mtwProjects/mtwScripts/config/bash/profile ${HOME}/.profile
+
+#Profile
+mv ${HOME}/.bashrc ${HOME}/.bashrc.old
+ln -s ${HOME}/mtwProjects/mtwScripts/config/bash/profile ${HOME}/.bashrc
+
+#VIM
+mv ${HOME}/.vimrc ${HOME}/.vimrc.old
+ln -s ${HOME}/mtwProjects/mtwScripts/config/vim/vimrc ${HOME}/.vimrc
+
+# Top
+mv ${HOME}/.toprc ${HOME}/.toprc.old
+ln -s ${HOME}/mtwProjects/mtwScripts/config/top/toprc ${HOME}/.toprc
+
+# Fonts
+ln -s ${HOME}/mtwProjects/mtwScripts/config/fonts ${HOME}/.fonts
+

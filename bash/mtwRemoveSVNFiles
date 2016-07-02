@@ -1,0 +1,31 @@
+#!/bin/bash
+
+. ${PROJECTSDIR}/mtwScripts/mtwInclude.sh
+
+VER=0.0.1
+
+usage () {
+cat << EOF
+
+${0} v${VER}
+Usage: ${0} [directory] 
+License: GPL
+
+EOF
+}
+
+if [ ${#} -lt "1" ]; then
+    usage
+    exit 0
+fi
+
+if [ -d ${1} ]; then
+#	rsync -a -u --exclude="*.svn" ${1} svn-tmp
+
+	cp -r ${1} ${1}-without-svn; cd ${1}-without-svn
+	#find . -name ".svn" -exec rm -rf {} \;
+	find . -name .svn -print0 | xargs -0 rm -rf  
+	cd ..
+
+fi
+

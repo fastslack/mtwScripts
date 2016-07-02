@@ -1,0 +1,12 @@
+#!/bin/bash
+
+. ${HOME}/mtwScripts/mtwInclude.sh
+
+USER="fastslack"
+DEST="192.168.1.200"
+#DISK="/dev/hda1"
+DISK="/dev/disk0s3"
+
+dd bs=16777216 if=${DISK} \
+| bzip2 -9 \
+| ssh ${USER}@${DEST} "dd of=/home/${USER}/backups/dd/${HOST}-${PACKDATE}-backup.iso.bz2"

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+. ${HOME}/mtwProjects/mtwScripts/mtwInclude.sh
+
+
+ffmpeg -i $1 -vcodec libvpx -acodec libvorbis -f webm movie.webm

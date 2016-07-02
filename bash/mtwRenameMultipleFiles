@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Not work with Darwin / Mac OS X Tiger 10.4.11 <= Check it now
+
+for i in *; do
+	if [ -f $i ]; then 	
+		#j=`echo $i | sed 's/${1}/${2}/'`;
+		j=${i/${1}/${2}}
+		echo $i - $j
+		mv "$i" "$j"; 
+	fi
+done

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+
+mencoder -oac mp3lame -srate 22050 -ovc lavc -lavcopts vcodec=mjpeg -vf scale=585:389 ${1} -o video.avi

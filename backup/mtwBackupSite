@@ -1,0 +1,44 @@
+#!/bin/sh
+
+. ${HOME}/mtwScripts/mtwInclude.sh
+
+VER=0.0.1
+
+usage () {
+cat << EOF
+
+${0} v${VER}
+Usage: ${0} [directory] [--force] [--del-dir]
+License: GPL
+
+EOF
+}
+
+if [ ${#} -lt "1" ]; then
+    usage
+    exit 0
+fi
+    
+COUNT=0
+while [  ${COUNT} -le $# ]; do
+	echo ${COUNT}
+	if [ ${1:(-1)} == "/" ]; then
+		let NUM=${#1}-1
+		DIR=${1:0:${NUM}}
+	fi
+
+	if [ -d ${DIR} ]; then
+		tar cfh ${DIR}-${HOST}-${PACKDATE}.tar --exclude='.svn' ${DIR}
+		bzip2 ${DIR}-${HOST}-${PACKDATE}.tar
+		mv ${DIR}-${HOST}-${PACKDATE}.tar.bz2 ${BACKUPDIR}/www/sites.gz/.
+	
+#		if [ "${2}" = "--del-dir" ]; then
+#			rm -rf ${DIR}/
+#	  	fi
+	fi
+	shift 1
+	let COUNT=COUNT+1
+done
+
+
+

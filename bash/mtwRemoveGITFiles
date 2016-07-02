@@ -1,0 +1,26 @@
+#!/bin/bash
+
+. ${PROJECTSDIR}/mtwScripts/mtwInclude.sh
+
+VER=0.0.1
+
+usage () {
+cat << EOF
+
+${0} v${VER}
+Usage: ${0} [directory] 
+License: GPL
+
+EOF
+}
+
+if [ ${#} -lt "1" ]; then
+    usage
+    exit 0
+fi
+
+if [ -d ${1} ]; then
+	cp -r ${1} ${1}-without-git; cd ${1}-without-git
+        rm -rf .git
+        cd ..
+fi
