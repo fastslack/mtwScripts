@@ -2,7 +2,7 @@
 
 ACTION=$2
 
-if [ "$ACTION" = "up"];then
+if [ "$ACTION" = "up" ]; then
    /sbin/ethtool -K eth0 rx off tx off tso off gso off
    echo "all segmentation offload settings have been switched off"
 fi
