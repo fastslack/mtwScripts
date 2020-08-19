@@ -1,0 +1,4 @@
+#!/bin/bash
+
+find . -type d -exec chmod -R 0755 {} \;
+find . -type f -exec chmod -R 0644 {} \;
