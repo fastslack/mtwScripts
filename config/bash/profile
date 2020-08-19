@@ -14,6 +14,7 @@ PATH="${PATH}:/usr/X11R6/bin"
 PATH="${PATH}:/opt/e17/bin"
 PATH="${PATH}:/opt/gnome/bin"
 PATH="${PATH}:/opt/kde/bin"
+PATH="${PATH}:/opt/phpstorm/bin"
 PATH="${PATH}:/opt/apache-tomcat/bin"
 PATH="${PATH}:${SCRIPTSDIR}"
 PATH="${PATH}:${SCRIPTSDIR}/backup"
@@ -21,6 +22,7 @@ PATH="${PATH}:${SCRIPTSDIR}/bash"
 PATH="${PATH}:${SCRIPTSDIR}/projects"
 PATH="${PATH}:${SCRIPTSDIR}/net"
 PATH="${PATH}:${SCRIPTSDIR}/joomla"
+PATH="${HOME}/.composer/vendor/bin"
 
 # Gnome path
 PKG_CONFIG_PATH="/usr/lib/pkgconfig/:/opt/gnome/lib/pkgconfig/:/opt/e17/lib/pkgconfig/"
@@ -109,3 +111,6 @@ export LC_COLLATE="en_US.UTF-8"
 
 PERL_MB_OPT="--install_base \"/home/fastslack/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/fastslack/perl5"; export PERL_MM_OPT;
+# Ubuntu make installation of Ubuntu Make binary symlink
+PATH=/home/fastslack/.local/share/umake/bin:$PATH
+export DOCKER_HOST=127.0.0.1:2375
