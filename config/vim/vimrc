@@ -108,7 +108,7 @@ syntax enable
 "if MySys() == "mac"
   set gfn=Bitstream\ Vera\ Sans\ Mono:h17
 "  set nomacatsui
-  set termencoding=macroman
+"  set termencoding=macroman
 "elseif MySys() == "linux"
 "  set gfn=Monospace\ 11
 "endif
