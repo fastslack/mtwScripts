@@ -114,3 +114,7 @@ PERL_MM_OPT="INSTALL_BASE=/home/fastslack/perl5"; export PERL_MM_OPT;
 # Ubuntu make installation of Ubuntu Make binary symlink
 PATH=/home/fastslack/.local/share/umake/bin:$PATH
 export DOCKER_HOST=127.0.0.1:2375
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
